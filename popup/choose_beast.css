@@ -1,0 +1,55 @@
+html, body {
+  width: 400px;
+  background-color: rgb(70, 68, 68);
+  color: #fff;
+  padding: 10px;
+  
+}
+
+.hidden {
+  display: none;
+}
+#error-content{
+	color: red;
+}
+.button {
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #333;
+  width: 45%;
+  display:inline-block;
+  border-radius: 10px;
+  transition: all .5s;
+  
+}
+#user_mesage{
+	font-size: 14px;
+	letter-spacing: 1.2px;
+}
+.button:hover {
+  background-color: #333;
+}
+
+#start{	
+	background-color: rgb(66, 216, 66);
+}
+#stop{
+	background-color: rgb(245, 17, 17);
+}
+#reset_but{
+	width: 65%;
+	display: block;
+	margin:auto;
+	background-color: yellow;
+	
+}
+#reset_but:hover{
+background-color: red;
+}
+.redalert{
+	border:2px solid red!important;
+}
