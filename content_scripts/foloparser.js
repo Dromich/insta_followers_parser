@@ -47,14 +47,16 @@
 			//var i = Number(document.getElementsByClassName("g47SY")[2].innerHTML.replace(/\D+/g,""));
 			}*/
 
-		var i = document.getElementsByClassName("g47SY")[1].innerHTML;
+		var i = document.getElementsByClassName("g47SY")[1].attributes[1].value;
+		var i =  Number( i.replace( /\s/g, "")); 
+		console.log('КІлькість користувачів ' +i);
 
-		i = i.match(/[^"]+/g);
-		i = i.join('');
-		i = i.match(/[^\s]+/g);
-		i = i.join('');
-		i = i.match(/[^,]+/g);
-		i = i.join('');
+		// i = i.match(/[^"]+/g);
+		// i = i.join('');
+		// i = i.match(/[^\s]+/g);
+		// i = i.join('');
+		// i = i.match(/[^,]+/g);
+		// i = i.join('');
 		//End змінні
 
 
@@ -138,6 +140,17 @@
 
 	};
 
+	function RemItPic() {
+		let itpic = document.querySelectorAll('.RR-M-');
+
+		for (let index = 0; index < itpic.length; index++) {
+		itpic[index].remove();
+			
+		}
+
+		
+	};
+
 	function start() {
 		if (i == n.length ||i<=n.length) {
 			off();
@@ -156,7 +169,7 @@
 			if (!content) {
 				alert("Інфоблок відсутній");
 			} else {
-				var content = document.getElementById("pars_meseger");
+				
 				if (i > n.length) {
 					content.innerHTML = "<center><b>ГОТОВО</b></center><br><hr><center><span style=\"color:red;\">Спарсило не всі а лише: <span id=\"pars_only\"></span> шт.</span></center><hr><br>Залишилось <b><span id=\"need_more\"></span> </b><br><hr><div id=\"result\"></div>"
 					addTextNode("pars_only", n.length);
@@ -176,13 +189,16 @@
 			if (n.length <= 16) {
 				x[0].scrollTop = x[0].scrollHeight / 4;
 				run();
+				RemItPic()
 			}else if(n.length <= 10){
 				x[0].scrollTop = x[0].scrollHeight ;
 				run();
+				RemItPic()
 
 			}else {
 				x[0].scrollTop = x[0].scrollHeight - 70;
 				run();
+				RemItPic()
 			};
 		}
 	};
