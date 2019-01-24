@@ -29,35 +29,18 @@
 
 	try {
 		// Змінні ------------------------------------------------------------
+		var loader = document.getElementsByClassName("ztp9m");          //клас лоадера
 		var x = document.getElementsByClassName("isgrP");           	// класс тега div списку акаунтів
 		var a = document.getElementsByClassName("jSC57  _6xe7A");   	// класс тега ul списку акаунтів
 		var n = document.getElementsByClassName("wo9IH");           	// класс тега li списку акаунтів(головний масив)
 		var timeoutID = '';
 		var t = 1;
 
-		// titleH1 = document.getElementsByClassName("m82CD")[0];	// класс  h1 заголовок вікна
-		// titleDIV = titleH1.getElementsByTagName("div")[0];		  // тег div заголовку
-		// title = titleDIV.innerHTML;
-
-		/*if (title=="Читачі" || title=="Followers" ){
-			var i = document.getElementsByClassName("g47SY")[1].innerHTML;
-			//var i = Number(document.getElementsByClassName("g47SY")[1].innerHTML.replace(/\D+/g,""));
-			}else{
-			var i = document.getElementsByClassName("g47SY")[2].innerHTML;
-			//var i = Number(document.getElementsByClassName("g47SY")[2].innerHTML.replace(/\D+/g,""));
-			}*/
-
 		var i = document.getElementsByClassName("g47SY")[1].attributes[1].value;
 		var i =  Number( i.replace( /\s/g, "")); 
 		console.log('КІлькість користувачів ' +i);
 
-		// i = i.match(/[^"]+/g);
-		// i = i.join('');
-		// i = i.match(/[^\s]+/g);
-		// i = i.join('');
-		// i = i.match(/[^,]+/g);
-		// i = i.join('');
-		//End змінні
+		
 
 
 	} catch (e) {
@@ -140,7 +123,7 @@
 
 	};
 
-	function RemItPic() {
+	function RemItPic() {//видаляє фотки зі списку користувачі(економія пам'яті)
 		let itpic = document.querySelectorAll('.RR-M-');
 
 		for (let index = 0; index < itpic.length; index++) {
@@ -185,21 +168,21 @@
 			};
 
 		} else {
+			
+			if (loader.length>0) {
+				console.log('поки грузить')
+				setTimeout(run, 1800);
 
-			if (n.length <= 16) {
-				x[0].scrollTop = x[0].scrollHeight / 4;
+				
+			}else{
+				x[0].scrollTop =  a[0].scrollHeight  ;
+				RemItPic();
 				run();
-				RemItPic()
-			}else if(n.length <= 10){
-				x[0].scrollTop = x[0].scrollHeight ;
-				run();
-				RemItPic()
-
-			}else {
-				x[0].scrollTop = x[0].scrollHeight - 70;
-				run();
-				RemItPic()
-			};
+				
+			}
+				
+				
+			
 		}
 	};
 
