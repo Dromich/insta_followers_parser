@@ -1,10 +1,26 @@
 (function () {
+
 	
+	//Блок кнопки копіювати
+	function setClipboard() {
+		console.log(text); 
+		let data = new DataTransfer();
+	  
+		data.items.add("text/plain", text);
+		navigator.clipboard.write(data).then(function() {
+		 console.log('/* success */'); 
+		}, function() {
+			console.log('/* failure */')
+		  
+		});
+	  };
+
+	//кінець конопки копіювати
 
 	function addTextHTML(div, text) {
 		
 			p1 = document.getElementById(div);
-			p1.insertAdjacentHTML('afterend',text );
+			p1.insertAdjacentHTML('beforeend',text );
 			
 	};
 
@@ -97,7 +113,7 @@
 		result = result.match(/[^"]+/g);
 		result = result.join('');
 		result = result.match(/[^\s]+/g);
-		result = result.join(','+'<br>');//Зібрало  через кому, потім можна розпарсити як масив
+		result = result.join(',');//Зібрало  через кому, потім можна розпарсити як масив
 		if (!content) {
 			alert("Інфоблок відсутній");
 		} else {
@@ -107,11 +123,13 @@
 				addTextNode("pars_only", n.length);
 				addTextNode("need_more", i - n.length);
 				addTextHTML("result", result);
+				
 
 			} else {
 				content.innerHTML = "<center><b>ГОТОВО</b></center><br><hr><center><span style=\"color:green;\">Спарсило <span id=\"pars_only\"></span>  шт.</span></center><hr><br><div id=\"result\"></div>"
 				addTextNode("pars_only", n.length);
 				addTextHTML("result", result);
+				
 
 			};
 
@@ -147,22 +165,24 @@
 			result = result.match(/[^"]+/g);
 			result = result.join('');
 			result = result.match(/[^\s]+/g);
-			result = result.join(','+'<br>');//Зібрало  через кому, потім можна розпарсити як масив
+			result = result.join(',');//Зібрало  через кому, потім можна розпарсити як масив
 
 			if (!content) {
 				alert("Інфоблок відсутній");
 			} else {
 				
 				if (i > n.length) {
-					content.innerHTML = "<center><b>ГОТОВО</b></center><br><hr><center><span style=\"color:red;\">Спарсило не всі а лише: <span id=\"pars_only\"></span> шт.</span></center><hr><br>Залишилось <b><span id=\"need_more\"></span> </b><br><hr><div id=\"result\"></div>"
+					content.innerHTML = "<center><b>ГОТОВО</b></center><br><hr><center><span style=\"color:red;\">Спарсило не всі а лише: <span id=\"pars_only\"></span> шт.</span></center><hr><br>Залишилось <b><span id=\"need_more\"></span> </b><br><hr>Скопіювати</span><div id=\"result\"></div>"
 					addTextNode("pars_only", n.length);
 					addTextNode("need_more", i - n.length);
 					addTextHTML("result", result);
+					
 
 				} else {
 					content.innerHTML = "<center><b>ГОТОВО</b></center><br><hr><center><span style=\"color:green;\">Спарсило <span id=\"pars_only\"></span>  шт.</span></center><hr><br><div id=\"result\"></div>"
 					addTextNode("pars_only", n.length);
 					addTextHTML("result", result);
+					
 
 				};
 			};
@@ -231,10 +251,24 @@
 
 			GetFolovers(message.Comand)//переадєм параметри функції
 
-		} else if (message.command === "reset") {
+		}else if(message.command === "copyR"){
+			console.log('Try GEt COPYR');
+			let emailLink = document.getElementById('result').innerText;
+
+			navigator.clipboard.writeText(emailLink).then(function() {
+			console.log('/* clipboard successfully set */')	
+			  }, function() {
+				console.log('/* clipboard write failed */')	
+			  });
+
+			alert("Всі акаунти скопійовано у буфер обміну ви можете вставити їх куди потрібно натиснувши Ctrl + V");
+
+		}else if (message.command === "reset") {
 			// removeExistingBeasts();
 			RemInfoblock();
 		}
 	});
 
 })();
+
+

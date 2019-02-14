@@ -13,9 +13,10 @@ const CssCode = `body {
 					color: #fff;
 					font-size: 1.2em;
 					z-index: 999999;
-					height: 100%;
+					height: auto;
 					overflow-y: scroll;
 				}
+				
 				#infoblock b{
 					font-weight: 600;
 					padding: auto 2px;				
@@ -68,7 +69,11 @@ function getParam(butText) {
 			{command: "goparse",			
 			Comand:param  });
       });
-    }
+	}
+	function copyrr(tabs) {
+		browser.tabs.sendMessage(tabs[0].id, 
+			{command: "copyR" });
+	  }
 
     /**
      * Remove the page-hiding CSS from the active tab,
@@ -98,7 +103,13 @@ function getParam(butText) {
       browser.tabs.query({active: true, currentWindow: true})
         .then(beastify)
         .catch(reportError);
-    }
+	}
+	else if (e.target.classList.contains("js-copybtn")){
+		browser.tabs.query({active: true, currentWindow: true})
+        .then(copyrr)
+        .catch(reportError);
+
+	}
     else if (e.target.classList.contains("reset")) {
       browser.tabs.query({active: true, currentWindow: true})
         .then(reset)
@@ -115,6 +126,7 @@ function reportExecuteScriptError(error) {
   document.querySelector("#popup-content").classList.add("hidden");
   document.querySelector("#user_mesage").classList.add("hidden");
   document.querySelector("#error-content").classList.remove("hidden");
+  document.querySelector("#eror_reson").insertAdjacentHTML('beforeend',error.message );
   console.error(`Помилка загрузки скрипта: ${error.message}`);
 }
 

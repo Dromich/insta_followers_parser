@@ -52,4 +52,18 @@ background-color: red;
 }
 .redalert{
 	border:2px solid red!important;
+	color: #fff!important;
+	padding: 10px;
+}
+.js-copybtn {
+	padding: 5px;
+	display: block;
+	border: 1px solid;
+	background-color: deeppink;
+	color: #fff;
+	
+	text-align: center;
+	border-radius: 10px;
+	
+	cursor: pointer;
 }
