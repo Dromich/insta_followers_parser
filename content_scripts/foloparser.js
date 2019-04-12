@@ -52,8 +52,8 @@
 		var timeoutID = '';
 		var t = 1;
 
-		var i = document.getElementsByClassName("g47SY")[1].attributes[1].value;
-		var i =  Number( i.replace( /\s/g, "")); 
+		var i = document.getElementsByClassName("g47SY")[1].title;
+		var i =  Number( i.replace(/[/.,!?;]*/g, '')); 
 		console.log('КІлькість користувачів ' +i);
 
 		
