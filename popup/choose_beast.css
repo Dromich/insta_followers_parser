@@ -36,8 +36,8 @@ html, body {
 	letter-spacing: 1.2px;
 }
 .button:hover {
-  background-color: #000;
-  color: #f7c641;
+  background-color: #fff;
+  color: #333;
   border: 1px solid;
 }
 
